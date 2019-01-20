@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 username = 'username@gmail.com' # your Gmail account
@@ -15,7 +17,9 @@ users = [
 
 url = 'https://www.gmail.com/' # the URL to open in the browser
 
-driver = webdriver.Chrome('./chromedriver') # Chrome driver
+options = webdriver.ChromeOptions()
+options.add_argument('--user-data-dir=./User_Data')
+driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=options)
 
 driver.get(url) # opens Gmail in your browser
 
